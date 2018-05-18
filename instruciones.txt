@@ -1,0 +1,31 @@
+REGLAS DEL MASTERMIND
+
+Mastermind es un juego de habilidad y logica que consiste en descubrir
+una secuencia de colores oculta.
+
+ELEMENTOS QUE COMPONEN EL JUEGO
+
+Tablero compuesto por:
+• Codigo generado por el ordenador.
+• 6 colores diferentes: Blanco, Negro, Amarillo, Rojo, Verde, Azul.
+• Un vector de colores que depende de la dificultad: 3 para fácil, 4 para dificultad media y 5 para dificil.
+• Un vector de aciertos.
+
+
+COMO SE JUEGA
+
+En Mastermind compiten 2 jugadores, uno de ellos el ordenador generara un codigo
+oculto de colores, pudiendo hacer las combinaciones con los 6
+colores disponibles e incluso repitiendo color si lo desea.
+ El jugador debera acertar en el menor numero posible de
+jugadas la clave para obtener una buena puntuación. Para descifrar el codigo
+secreto de colores el jugador debera ir probando combinaciones aleatorias de 
+colores, y en cada combinacion, el ordenador debe darle pistas mediante
+indicandole que colores estan puestos en el sitio correcto.
+Por cada color acertado y posicion, devolvera un correcto en la posicion.
+ El jugador debera acertar el código de colores en el los menores intentos posibles.
+
+PUNTUACIÓN
+
+La forma de puntuación es bastante sencilla, cuando el jugador acierte el codigo se guardara el numero de intentos que ha usado para adivinar el código,
+siendo la mejor puntuación menos intentos
