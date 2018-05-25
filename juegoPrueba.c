@@ -5,6 +5,15 @@
 #define N 4
 
 typedef struct{
+	char name[10];
+	int anio;
+	char mes [15];
+	int dia;
+	int age;
+	int points;
+}puntos;
+
+typedef struct{
 	char color[10];
 	int puntos;
 }codigo;
@@ -12,15 +21,16 @@ typedef struct{
 void genptos(int *p);
 void genera(char *p);
 char menu(void);
+void datos(int puntuacion, FILE *pg);
 
 int main()
 {
 	srand(time(NULL));
-	FILE *pf;
-	int i, m=0, intento=0, *q;
+	FILE *pf,*pg;
+	int i,j=0, m=0, intento=0, *q, puntuacion=0;;
 	codigo ordenador[N], respuesta[N], solucion[N];
 	long int fsize;
-	char *texto, *p,  opcion , dificultad;
+	char *texto, *texto1, *p,  opcion , dificultad;
 	
 	do{
 		opcion=menu();
@@ -34,11 +44,11 @@ int main()
 						genera(p);
 						q = &ordenador[i].puntos;
 						genptos(q);
-						printf("%s\t", p);
+						//printf("%s\t", p);
 					}
 				do{
 				m=0;
-				printf("\nIntroduce tus colores:\n");
+				printf("\nIntroduce tus colores: entre los posibles: Negro, Blanco, Amarillo, Rojo, Azul, Verde \n");
 				printf("Intento numero %i\n", intento+1 );
 				for(i=0; i<N ;i++)
 				{
@@ -55,7 +65,12 @@ int main()
 				}
 				for(i=0 ; i<N ; i++)
 				{
-					printf("%s\t", solucion[i]);
+					printf("%s\t", solucion[i].color);
+				}
+				printf("\n Has introducido \n");
+				for(i=0 ; i<N ; i++)
+				{
+					printf("%s\t", respuesta[i].color);
 				}
 				if(m<N)
 					printf("\n Pruebe otra vez\n");
@@ -64,6 +79,36 @@ int main()
 				break;
 			case 'C':
 			case 'c':
+				if( m== N)
+				{
+					for(i=0; i<N; i++)
+					{
+						puntuacion += ordenador[i].puntos;
+					}
+					puntuacion/=4;
+					puntuacion += intento;
+					datos(puntuacion,pg);
+				}
+				pg = fopen("puntuacion.txt", "r");
+				if (pg == NULL)
+				{
+				printf("Error al abrir el fichero.\n");	
+				return -1;
+				}
+				else
+				{
+					printf("Fichero abierto correctamente.\n");
+					fseek(pg, 0, SEEK_END);
+	   				fsize = ftell(pf);
+	    			fseek(pg, 0, SEEK_SET);
+	    			texto= malloc(sizeof(char) * fsize);
+					while(fscanf(pg, "%c", &texto[j]) != EOF)
+					{
+		   				j++;
+					}
+					printf("%s\n", texto);
+				}
+				fclose(pg);
 				break;
 			case 'M':
 			case 'm':
@@ -75,16 +120,16 @@ int main()
 				}
 				else
 				{
-				printf("Fichero abierto correctamente.\n");
-				fseek(pf, 0, SEEK_END);
-	   			fsize = ftell(pf);
-	    		fseek(pf, 0, SEEK_SET);
-	    		texto= malloc(sizeof(char) * fsize);
-				while(fscanf(pf, "%c", &texto[i]) != EOF)
-				{
-		   			i++;
-				}
-				printf("%s\n", texto);
+					printf("Fichero abierto correctamente.\n");
+					fseek(pf, 0, SEEK_END);
+	   				fsize = ftell(pf);
+	    			fseek(pf, 0, SEEK_SET);
+	    			texto1= malloc(sizeof(char) * fsize);
+					while(fscanf(pf, "%c", &texto1[i]) != EOF)
+					{
+		   				i++;
+					}
+					printf("%s\n", texto1);
 				}
 				fclose(pf);
 				break;
@@ -109,7 +154,7 @@ void genera(char *p)
 {
 	int   aux;
 	aux=40 + (rand()%6);
-	printf("%i", aux);
+	//printf("%i", aux);
 	switch(aux){
 		case 40:
 			strcpy( p,"negro");
@@ -135,7 +180,7 @@ void genptos(int *q)
 {
 	int   aux;
 	aux=40 + (rand()%6);
-	printf("%i", aux);
+	//printf("%i", aux);
 	switch(aux){
 		case 40:
 			*q=1;
@@ -156,4 +201,17 @@ void genptos(int *q)
 			*q=6;
 			break;
 	}	
+}
+void datos(int puntuacion, FILE *pg)
+{
+	puntos player;
+	printf("Introduce tu nombre y tu edad \n");
+	scanf("%s %d", player.name, &player.age);
+	printf("\n %s: \n", player.name);
+	printf("Introduce la fecha en la que juegas ejem: 10 enero 2018 \n ");
+	scanf("%d %s %d", &player.dia, player.mes, &player.anio);
+	pg=fopen("puntuacion.txt","a");
+	player.points=puntuacion;
+	fprintf(pg, "%s %d %d %d %s %d \n", player.name, player.age, player.points, player.dia, player.mes, player.anio);
+	fclose(pg);
 }
