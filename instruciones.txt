@@ -8,7 +8,7 @@ ELEMENTOS QUE COMPONEN EL JUEGO
 Tablero compuesto por:
 • Codigo generado por el ordenador.
 • 6 colores diferentes: Blanco, Negro, Amarillo, Rojo, Verde, Azul.
-• Un vector de colores que depende de la dificultad: 3 para fácil, 4 para dificultad media y 5 para dificil.
+• Un vector de colores formado por 4 elementos.
 • Un vector de aciertos.
 
 
@@ -20,12 +20,12 @@ colores disponibles e incluso repitiendo color si lo desea.
  El jugador debera acertar en el menor numero posible de
 jugadas la clave para obtener una buena puntuación. Para descifrar el codigo
 secreto de colores el jugador debera ir probando combinaciones aleatorias de 
-colores, y en cada combinacion, el ordenador debe darle pistas mediante
-indicandole que colores estan puestos en el sitio correcto.
+colores,
+y en cada combinacion, el ordenador debe darle pistas indicandole que colores estan puestos en el sitio correcto.
 Por cada color acertado y posicion, devolvera un correcto en la posicion.
- El jugador debera acertar el código de colores en el los menores intentos posibles.
+ El jugador debera acertar el codigo de colores en el los menores intentos posibles.
 
-PUNTUACIÓN
+PUNTUACION
 
-La forma de puntuación es bastante sencilla, cuando el jugador acierte el codigo se guardara el numero de intentos que ha usado para adivinar el código,
-siendo la mejor puntuación menos intentos
+La forma de puntuación es bastante sencilla, cuando el jugador acierte el codigo se guardara el numero de intentos 
+que ha usado para adivinar el código,siendo la mejor puntuación menos intentos
