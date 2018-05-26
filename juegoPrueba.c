@@ -4,7 +4,7 @@
 #include <string.h>
 #define N 4
 
-typedef struct{
+typedef struct{   
 	char name[10];
 	int anio;
 	char mes [15];
@@ -125,7 +125,7 @@ int main()
 	   				fsize = ftell(pf);
 	    			fseek(pf, 0, SEEK_SET);
 	    			texto1= malloc(sizeof(char) * fsize);
-					while(fscanf(pf, "%c", &texto1[i]) != EOF)
+					while(fscanf(pf, "%[^\n]\n", texto1) != EOF)
 					{
 		   				i++;
 					}
@@ -147,7 +147,7 @@ char menu(void)
 	printf ("M - Mostrar instrucciones \n");
 	printf ("S - Abandonar Aplicacion \n");
 	printf ("Opcion: ");
-	scanf ("%c",&opcion);
+	scanf (" %c",&opcion);
 	return opcion;
 }
 void genera(char *p)

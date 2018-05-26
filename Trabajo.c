@@ -1,6 +1,6 @@
 #include <stdio.h>
 char menu(void);
-int 
+
 int main()
 {
 	char opcion, dific;
@@ -31,10 +31,11 @@ int main()
 			
 		case 'C':
 		case 'c':
+			break;
 			
 		case 'A':
 		case 'a':
-			
+			break;
 			
 	}
 }
